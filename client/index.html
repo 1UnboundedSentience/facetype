@@ -36,10 +36,10 @@
   </script>
 </head>
 <body>
+  <div id='video-wrapper' style='width: 400px; display:inline-block'>
+    <div id="myPublisherDiv"></div>
+  </div>
   <div id="firepad"></div>
-
-  <h1>Awesome video feed!</h1>
-  <div id="myPublisherDiv"></div>
   <script>
     var firepadRef = new Firebase('https://facetype.firebaseio.com/');
     var codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });
