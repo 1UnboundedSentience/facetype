@@ -13,9 +13,33 @@
   <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.1.1/firepad.css" />
   <link rel="stylesheet" href="/index.css" />
   <script src="https://cdn.firebase.com/libs/firepad/1.1.1/firepad.min.js"></script>
+  <script src='http://static.opentok.com/v2/js/opentok.min.js'></script>
+  <script type="text/javascript">
+    // Initialize API key, session, and token...
+    // Think of a session as a room, and a token as the key to get in to the room
+    // Sessions and tokens are generated on your server and passed down to the client
+    var apiKey = "25408982";
+    var sessionId = "2_MX4yNTQwODk4Mn5-MTQyMDc5MTc2NjYyOX55N2VVQVc5cFpVWXMrQWxIY0lXRktuQ1R-fg";
+    var token = "T1==cGFydG5lcl9pZD0yNTQwODk4MiZzaWc9MmFhNjVkMmFlM2RiN2QxYjg4M2Q5ZTBjNTA3YjYxMDYzYzViZjBmMzpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0eU5UUXdPRGs0TW41LU1UUXlNRGM1TVRjMk5qWXlPWDU1TjJWVlFWYzVjRnBWV1hNclFXeElZMGxYUmt0dVExUi1mZyZjcmVhdGVfdGltZT0xNDMxNDAwOTk1Jm5vbmNlPTAuNzk1NzY1MDM1NTk1OTUyNQ==";
+
+    // Initialize session, set up event listeners, and connect
+    var session = OT.initSession(apiKey, sessionId);
+
+    session.on("streamCreated", function(event) {
+      session.subscribe(event.stream);
+    });
+
+    session.connect(token, function(error) {
+      var publisher = OT.initPublisher();
+      session.publish(publisher);
+    });
+  </script>
 </head>
 <body>
   <div id="firepad"></div>
+
+  <h1>Awesome video feed!</h1>
+  <div id="myPublisherDiv"></div>
   <script>
     var firepadRef = new Firebase('https://facetype.firebaseio.com/');
     var codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });
