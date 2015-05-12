@@ -1,2 +1,5 @@
 # facetype
-Facetime with typing.
+
+> Facetime with typing.
+
+THIS IS A HACKATHON PROJECT. PROCEED WITH CAUTION.
